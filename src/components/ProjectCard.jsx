@@ -1,26 +1,49 @@
+// src/components/ProjectCard.jsx
+
 export default function ProjectCard({ title, desc, tech, link }) {
   return (
-    <div className="p-5 rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition max-w-md w-full mx-auto">
-      <h2 className="text-lg sm:text-xl font-semibold mb-2 dark:text-white">
+    <div
+      className="
+        group
+        p-6 rounded-xl
+        border border-violet-500/40
+        bg-white/10 dark:bg-black/20
+        shadow-md transition-all duration-300
+        hover:scale-105 hover:shadow-2xl
+        hover:border-violet-500
+        hover:bg-white/20 dark:hover:bg-black/30
+        cursor-pointer
+      "
+    >
+      {/* Title */}
+      <h3 className="text-xl font-bold text-violet-600 dark:text-violet-300 mb-2">
         {title}
-      </h2>
+      </h3>
 
-      <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-3">
+      {/* Description */}
+      <p className="text-gray-700 dark:text-gray-300 mb-3 leading-6">
         {desc}
       </p>
 
-      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-4">
-        <span className="font-semibold">Tech:</span> {tech}
+      {/* Tech Stack */}
+      <p className="text-sm text-gray-900 dark:text-gray-200 font-semibold mb-4">
+        <span className="text-violet-500">Tech:</span> {tech}
       </p>
 
+      {/* GitHub Button */}
       {link && (
         <a
           href={link}
           target="_blank"
           rel="noreferrer"
-          className="inline-block text-xs sm:text-sm bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition"
+          className="
+            inline-block px-4 py-2
+            bg-violet-700 hover:bg-violet-800
+            text-white text-sm font-semibold
+            rounded-md transition-all duration-300 shadow-md
+          "
         >
-          View Project
+          View on GitHub
         </a>
       )}
     </div>

@@ -1,17 +1,13 @@
-// src/components/Navbar.jsx
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
-  // Load dark mode from localStorage
   const [dark, setDark] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
-
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
-  // Apply theme & store
   useEffect(() => {
     if (dark) {
       document.documentElement.classList.add("dark");
@@ -31,128 +27,102 @@ export default function Navbar() {
     { label: "Contact", to: "/contact" },
   ];
 
+  const isActive = (path) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+
+    return (
+      location.pathname === path ||
+      location.pathname.startsWith(`${path}/`)
+    );
+  };
+
+  const navLinkClass = (active) =>
+    [
+      "relative pb-1 text-sm font-medium transition-colors duration-300",
+      active
+  ? "text-violet-700 dark:text-white"
+  : "text-slate-700 hover:text-violet-700 dark:text-slate-300 dark:hover:text-white",
+    ].join(" ");
+
+  const underlineClass = (active) =>
+    [
+      "absolute left-0 -bottom-[1px] h-[2px] w-full origin-left rounded-full bg-violet-400 transition-all duration-300",
+      active ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
+    ].join(" ");
+
   return (
-    <nav
-      className="
-        fixed top-0 left-0 w-full z-50
-        bg-[#BEE3DB] dark:bg-[#92C7BC]
-        backdrop-blur-md shadow-md
-        transition-colors duration-300
-      "
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-        
-        {/* Logo */}
+      <nav className="fixed left-0 top-0 z-50 w-full border-b border-slate-200 dark:border-violet-900/40 bg-slate-50/90 dark:bg-gradient-to-r dark:from-black dark:via-slate-950 dark:to-violet-950/95 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] transition-colors duration-300"> 
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <Link
           to="/"
-          className="text-xl sm:text-2xl font-bold dark:text-white"
+          className="text-base font-semibold tracking-wide text-slate-900 dark:text-white transition-colors duration-300 hover:text-violet-600 dark:hover:text-violet-300 sm:text-lg"
           onClick={() => setOpen(false)}
         >
-          Chinna
+          Chinna Tirumanideep
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6 text-sm font-medium">
-          {navItems.map((item) => (
-            <div key={item.to} className="relative group">
+        <div className="hidden items-center gap-6 md:flex">
+          {navItems.map((item) => {
+            const active = isActive(item.to);
+
+            return (
               <Link
+                key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className="
-                  pb-1
-                  text-gray-700 dark:text-gray-900
-                  hover:text-gray-800 dark:hover:text-gray-700
-                  font-medium
-                "
+                className={navLinkClass(active)}
               >
                 {item.label}
+                <span className={underlineClass(active)} />
               </Link>
+            );
+          })}
 
-              {/* Hover underline — NOW NEUTRAL, NOT BLUE */}
-              <span
-                className="
-                  absolute left-0 -bottom-[2px]
-                  w-full h-[1px]
-                  bg-gray-700 dark:bg-gray-200
-                  scale-x-0 group-hover:scale-x-100
-                  transition-transform duration-300
-                  origin-left
-                "
-              ></span>
-            </div>
-          ))}
-
-          {/* Theme Toggle */}
           <button
             onClick={() => setDark((prev) => !prev)}
-            className="
-              px-3 py-1 rounded-md 
-              bg-gray-200 dark:bg-gray-800 
-              text-gray-800 dark:text-gray-100 
-              text-xs sm:text-sm
-            "
-          >
+            className="rounded-full border border-slate-300 dark:border-violet-900/50 bg-white dark:bg-black/50 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 transition-all duration-300 hover:border-violet-400 hover:text-violet-700 dark:hover:text-white"          >
             {dark ? "Light" : "Dark"}
           </button>
         </div>
 
-        {/* Mobile buttons */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex items-center gap-2 md:hidden">
           <button
             onClick={() => setDark((prev) => !prev)}
-            className="
-              px-2 py-1 rounded-md 
-              bg-gray-200 dark:bg-gray-800 
-              text-gray-800 dark:text-gray-100 
-              text-xs
-            "
+            className="rounded-full border border-violet-900/50 bg-black/50 px-2.5 py-1.5 text-xs font-medium text-slate-200 transition-all duration-300 hover:border-violet-400 hover:text-white"
           >
-            {dark ? "☀️" : "🌙"}
+            {dark ? "Light" : "Dark"}
           </button>
 
           <button
             onClick={() => setOpen((prev) => !prev)}
-            className="p-2 rounded-md border border-gray-400 dark:border-gray-600"
+            className="rounded-full border border-violet-900/50 bg-black/50 px-3 py-1.5 text-sm font-medium text-slate-200 transition-all duration-300 hover:border-violet-400 hover:text-white"
+            aria-label="Toggle menu"
           >
-            {open ? "✕" : "☰"}
+            {open ? "Close" : "Menu"}
           </button>
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
       {open && (
-        <div className="md:hidden bg-[#BEE3DB] dark:bg-[#92C7BC] border-t border-gray-300 dark:border-gray-700">
-          <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-4">
-            
-            {navItems.map((item) => (
-              <div key={item.to} className="relative group w-fit">
+<div className="border-t border-slate-200 dark:border-violet-900/40 bg-slate-50 dark:bg-black/95 md:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:px-6">
+            {navItems.map((item) => {
+              const active = isActive(item.to);
+
+              return (
                 <Link
+                  key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className="
-                    pb-1
-                    text-gray-700 dark:text-gray-900
-                    hover:text-gray-800 dark:hover:text-gray-700
-                    font-medium
-                  "
+                  className={navLinkClass(active)}
                 >
                   {item.label}
+                  <span className={underlineClass(active)} />
                 </Link>
-
-                {/* Mobile underline — also neutral now */}
-                <span
-                  className="
-                    absolute left-0 -bottom-[2px]
-                    w-full h-[1px]
-                    bg-gray-700 dark:bg-gray-200
-                    scale-x-0 group-hover:scale-x-100
-                    transition-transform duration-300
-                    origin-left
-                  "
-                ></span>
-              </div>
-            ))}
-
+              );
+            })}
           </div>
         </div>
       )}

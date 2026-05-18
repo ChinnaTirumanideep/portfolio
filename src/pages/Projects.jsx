@@ -1,42 +1,52 @@
+// src/pages/Projects.jsx
 import ProjectCard from "../components/ProjectCard";
 
 export default function Projects() {
-  const projects = [
-    {
-      title: "Grocery Inventory Management System",
-      desc: "A React-based system to track, update, and manage grocery stock with a simple and clean UI.",
-      tech: "React, JavaScript, (Backend of your choice)",
-      link: "#",
-    },
-    {
-      title: "Doctor Appointment Booking System",
-      desc: "Web app for patients to book and manage doctor appointments with an organized schedule view.",
-      tech: "React, Firebase / DB",
-      link: "#",
-    },
-    {
-      title: "Local Job Alert System",
-      desc: "A platform helping local workers and small businesses connect through job postings.",
-      tech: "HTML, CSS, JavaScript",
-      link: "#",
-    },
-  ];
-
   return (
-    <section
-      id="projects"
-      className="bg-gray-50 dark:bg-gray-800 py-12 sm:py-16"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-8 dark:text-white">
-          Projects
-        </h2>
+    <section className="px-6 py-20 max-w-5xl mx-auto">
 
-        <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
-          {projects.map((p) => (
-            <ProjectCard key={p.title} {...p} />
-          ))}
-        </div>
+      <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-violet-600 dark:text-violet-300">
+  Projects
+</h2>
+
+
+      <div className="grid sm:grid-cols-2 gap-8">
+
+        <ProjectCard
+          title="Grocery Inventory Management System"
+          desc="A React-based system to track and manage grocery stock."
+          tech="React, JavaScript"
+          link="https://github.com/ChinnaTirumanideep/grocery-inventory"
+        />
+
+        <ProjectCard
+          title="Doctor Appointment Booking System"
+          desc="A responsive platform for booking and managing doctor appointments."
+          tech="React, Firebase / DB"
+          link="https://github.com/ChinnaTirumanideep/doctor-appointment"
+        />
+
+        <ProjectCard
+          title="Local Job Alert System"
+          desc="A simple platform helping local workers discover nearby job opportunities."
+          tech="HTML, CSS, JavaScript"
+          link="https://github.com/ChinnaTirumanideep/local-job-alert"
+        />
+
+        <ProjectCard
+          title="Library Management System"
+          desc="A DBMS-based library record handling system."
+          tech="MySQL, Java, HTML/CSS"
+          link="https://github.com/ChinnaTirumanideep/library-management"
+        />
+
+        <ProjectCard
+          title="Lost & Found Website"
+          desc="A project designed to help users submit lost items and recover belongings easily."
+          tech="HTML, CSS, JavaScript"
+          link="https://github.com/ChinnaTirumanideep/lost-and-found"
+        />
+
       </div>
     </section>
   );
