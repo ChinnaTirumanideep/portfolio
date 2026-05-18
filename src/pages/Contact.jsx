@@ -40,7 +40,12 @@ export default function Contact() {
               <span className="font-semibold text-violet-600 dark:text-violet-300">
                 Email:
               </span>{" "}
-              chinnadasari0705@gmail.com
+              <a
+                href="mailto:chinnadasari0705@gmail.com"
+                className="hover:text-violet-600 transition-colors duration-300"
+              >
+                chinnadasari0705@gmail.com
+              </a>
             </p>
 
             <p>

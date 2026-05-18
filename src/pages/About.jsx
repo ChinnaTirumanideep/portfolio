@@ -7,11 +7,11 @@ export default function About() {
             About Me
           </p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
-            Computer Science student focused on practical software development
+            Aspiring developer focused on practical software solutions
           </h2>
 
           <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300">
-            I am a Computer Science student interested in building useful,
+            I'm an IT Student & Developer interested in building useful,
             user-friendly applications and improving my skills across web
             development, Java, databases, and problem solving. I enjoy taking
             ideas from concept to working project while keeping the code

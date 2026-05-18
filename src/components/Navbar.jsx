@@ -83,7 +83,17 @@ export default function Navbar() {
           <button
             onClick={() => setDark((prev) => !prev)}
             className="rounded-full border border-slate-300 dark:border-violet-900/50 bg-white dark:bg-black/50 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 transition-all duration-300 hover:border-violet-400 hover:text-violet-700 dark:hover:text-white"          >
-            {dark ? "Light" : "Dark"}
+            <span className="flex items-center gap-1">
+  {dark ? (
+    <>
+      ☀️ <span>Light</span>
+    </>
+  ) : (
+    <>
+      🌙 <span>Dark</span>
+    </>
+  )}
+</span>
           </button>
         </div>
 
