@@ -25,7 +25,7 @@ export default function Contact() {
         <SectionReveal className="theme-panel rounded-[2rem] p-7 sm:p-8">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-500">Contact</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
-            Let�s build something meaningful together
+            Let's build something meaningful together
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--text-muted)]">
             I�m open to internships, collaborations, and opportunities where I can contribute through thoughtful frontend work and dependable engineering.
