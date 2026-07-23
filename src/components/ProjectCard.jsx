@@ -9,7 +9,7 @@ export default function ProjectCard({ title, desc, tech, features = [], link, de
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.45, delay: index * 0.08 }}
-      className="theme-card group rounded-[1.75rem] p-6"
+      className="theme-card group w-full rounded-[1.75rem] p-5 sm:p-6 lg:hover:-translate-y-1 lg:hover:shadow-[0_24px_80px_rgba(124,58,237,0.16)]"
     >
       <div className="h-1.5 w-20 rounded-full bg-violet-500/60" />
 
@@ -33,19 +33,19 @@ export default function ProjectCard({ title, desc, tech, features = [], link, de
         ))}
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-3">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         {link && (
           <a
             href={link}
             target="_blank"
             rel="noreferrer"
-            className="theme-button-primary px-4 py-2 text-sm"
+            className="theme-button-primary w-full justify-center px-4 py-3 text-sm sm:w-auto sm:py-2"
           >
             GitHub
           </a>
         )}
         {demo && (
-          <a href={demo} className="theme-button-outline px-4 py-2 text-sm">
+          <a href={demo} className="theme-button-outline w-full justify-center px-4 py-3 text-sm sm:w-auto sm:py-2">
             Live Demo
           </a>
         )}

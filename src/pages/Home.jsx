@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { TypeAnimation } from "react-type-animation";
 
 import SectionReveal from "../components/SectionReveal";
 import StatCounter from "../components/StatCounter";
@@ -48,30 +49,59 @@ const certificates = [
 export default function Home() {
   return (
     <>
-      <section className="px-4 pb-24 pt-8 sm:px-6 sm:pt-14 lg:px-8">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+      <section className="px-4 pb-20 pt-8 sm:px-6 sm:pb-24 sm:pt-10 lg:px-8 lg:pt-14">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="order-2 lg:order-1"
+          >
             <p className="text-sm font-semibold uppercase tracking-[0.32em] text-violet-500">Hello 👋</p>
-            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-7xl">
+            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl xl:text-7xl">
               I'm Thiru Manideep
             </h1>
-            <p className="mt-4 text-lg font-medium text-violet-500 sm:text-xl">
+            <p className="mt-4 text-lg font-semibold text-violet-500 sm:text-xl">
               Final Year Information Technology Student
             </p>
+
+            <div className="mt-6 rounded-[1.4rem] border border-violet-400/20 bg-[var(--card-bg)]/80 p-4 shadow-[0_18px_50px_rgba(124,58,237,0.12)] backdrop-blur sm:p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-violet-500">Currently</p>
+              <div className="mt-3 min-h-[2.4rem] text-lg font-semibold text-[var(--text-primary)] sm:text-xl">
+                <TypeAnimation
+                  sequence={[
+                    "Building Full Stack Applications",
+                    1700,
+                    "Learning AI & Machine Learning",
+                    1700,
+                    "Preparing for Software Engineering Placements",
+                    1700,
+                    "Creating Modern Web Experiences",
+                    1700,
+                  ]}
+                  wrapper="span"
+                  speed={45}
+                  deletionSpeed={45}
+                  repeat={Infinity}
+                  className="inline-block"
+                />
+              </div>
+            </div>
+
             <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--text-muted)] sm:text-lg">
               I build practical applications with React, JavaScript, HTML, CSS, and Java while focusing on software development, problem solving, and learning new technologies.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="theme-button-primary px-6 py-3 text-sm"
+                className="theme-button-primary w-full justify-center px-6 py-3 text-sm sm:w-auto"
               >
                 Download Resume
               </a>
-              <Link to="/contact" className="theme-button-outline px-6 py-3 text-sm">
+              <Link to="/contact" className="theme-button-outline w-full justify-center px-6 py-3 text-sm sm:w-auto">
                 Contact Me
               </Link>
             </div>
@@ -92,14 +122,19 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.75, delay: 0.1 }} className="flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.75, delay: 0.1 }}
+            className="order-1 flex justify-center lg:order-2"
+          >
             <div className="relative">
               <div className="absolute inset-0 rounded-full bg-violet-500/20 blur-3xl" />
-              <div className="relative rounded-full border border-violet-400/40 p-3 shadow-[0_0_80px_rgba(124,58,237,0.16)]">
+              <div className="relative rounded-full border-4 border-violet-400/70 p-3 shadow-[0_0_80px_rgba(124,58,237,0.24)]">
                 <img
                   src={profileImage}
                   alt="Thiru Manideep"
-                  className="h-[300px] w-[300px] rounded-full object-cover sm:h-[360px] sm:w-[360px]"
+                  className="profile-glow h-[160px] w-[160px] rounded-full object-cover sm:h-[200px] sm:w-[200px] lg:h-[240px] lg:w-[240px] xl:h-[280px] xl:w-[280px]"
                 />
               </div>
             </div>
@@ -150,7 +185,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:pb-0 xl:grid-cols-3">
             {certificates.map((certificate, index) => (
               <motion.article
                 key={certificate.title}
@@ -158,7 +193,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="theme-card group overflow-hidden rounded-[1.5rem] p-5"
+                className="theme-card group min-w-[85vw] snap-start overflow-hidden rounded-[1.5rem] p-4 sm:min-w-[280px] md:min-w-0 md:p-5"
               >
                 <div className="mb-4 overflow-hidden rounded-[1rem] border border-violet-400/20 bg-[var(--card-bg)] p-2">
                   <img
@@ -177,19 +212,19 @@ export default function Home() {
                 <p className="mt-1 text-sm text-[var(--text-muted)]">{certificate.date}</p>
                 <p className="mt-4 text-sm leading-7 text-[var(--text-muted)]">{certificate.description}</p>
 
-                <div className="mt-5 flex flex-wrap gap-3">
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <a
                     href={certificate.image}
                     target="_blank"
                     rel="noreferrer"
-                    className="theme-button-primary px-4 py-2 text-sm"
+                    className="theme-button-primary w-full justify-center px-4 py-3 text-sm sm:w-auto sm:py-2"
                   >
                     View Certificate
                   </a>
                   <a
                     href={certificate.image}
                     download={`${certificate.title.replace(/\s+/g, "_")}.jpg`}
-                    className="theme-button-outline px-4 py-2 text-sm"
+                    className="theme-button-outline w-full justify-center px-4 py-3 text-sm sm:w-auto sm:py-2"
                   >
                     Download Certificate
                   </a>

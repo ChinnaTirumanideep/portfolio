@@ -116,7 +116,7 @@ export default function Navbar() {
 
       {open && (
         <div
-          className={`absolute left-0 top-full z-[9999] w-full border-t border-[rgba(124,58,237,0.2)] px-4 py-3 shadow-[0_20px_70px_rgba(0,0,0,0.35)] backdrop-blur-xl md:hidden ${
+          className={`absolute left-0 top-full z-[9999] w-full overflow-hidden rounded-b-[1.5rem] border-t border-[rgba(124,58,237,0.2)] px-4 py-3 shadow-[0_20px_70px_rgba(0,0,0,0.35)] backdrop-blur-xl md:hidden ${
             theme === "dark"
               ? "bg-[rgba(22,18,42,0.98)]"
               : "bg-white"

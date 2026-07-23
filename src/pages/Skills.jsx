@@ -23,10 +23,10 @@ export default function Skills() {
           </p>
         </SectionReveal>
 
-        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
           {skillGroups.map((group, index) => (
             <SectionReveal key={group.title} direction="up" delay={index * 0.06}>
-              <div className="theme-card rounded-[1.75rem] p-6">
+              <div className="theme-card h-full rounded-[1.5rem] p-4 sm:p-6 lg:hover:-translate-y-1">
                 <h3 className="text-lg font-semibold text-[var(--text-primary)]">{group.title}</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => (

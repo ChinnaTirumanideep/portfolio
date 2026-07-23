@@ -173,6 +173,20 @@ a {
   }
 }
 
+@keyframes profile-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.01);
+  }
+}
+
+.profile-glow {
+  animation: profile-float 3.2s ease-in-out infinite;
+}
+
 .animate-fade-up {
   animation: fade-up 0.7s ease-out both;
 }
