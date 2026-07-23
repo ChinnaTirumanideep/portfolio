@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { useTheme } from "../context/ThemeContext";
 
@@ -8,6 +8,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 12);
@@ -15,6 +16,14 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = open ? "hidden" : originalOverflow;
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [open]);
 
   const navItems = [
     { label: "Home", to: "/" },
@@ -38,9 +47,23 @@ export default function Navbar() {
         : "text-[var(--text-muted)] hover:bg-violet-500/10 hover:text-violet-500",
     ].join(" ");
 
+  const handleMobileNavClick = (path) => {
+    setOpen(false);
+
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      return;
+    }
+
+    navigate(path);
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, 120);
+  };
+
   return (
     <nav
-      className={`fixed left-0 top-0 z-50 w-full border-b transition-all duration-300 ${
+      className={`relative fixed left-0 top-0 z-50 w-full border-b transition-all duration-300 ${
         scrolled
           ? "border-white/10 bg-[var(--surface)]/85 backdrop-blur-xl shadow-[0_20px_70px_rgba(124,58,237,0.14)]"
           : "border-transparent bg-transparent"
@@ -92,21 +115,29 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-[var(--surface)]/95 md:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 sm:px-6">
+        <div
+          className={`absolute left-0 top-full z-[9999] w-full border-t border-[rgba(124,58,237,0.2)] px-4 py-3 shadow-[0_20px_70px_rgba(0,0,0,0.35)] backdrop-blur-xl md:hidden ${
+            theme === "dark"
+              ? "bg-[rgba(22,18,42,0.98)]"
+              : "bg-white"
+          }`}
+        >
+          <div className="mx-auto flex max-w-6xl flex-col gap-2 rounded-[1.25rem] border border-[rgba(124,58,237,0.2)] bg-[rgba(255,255,255,0.04)] p-3 sm:px-6 sm:py-4">
             {navItems.map((item) => {
               const active = isActive(item.to);
               return (
-                <Link
+                <button
                   key={item.to}
-                  to={item.to}
-                  onClick={() => setOpen(false)}
-                  className={`rounded-2xl px-3 py-2 text-sm font-medium transition-all duration-300 ${
-                    active ? "bg-violet-500/15 text-[var(--text-primary)]" : "text-[var(--text-muted)] hover:bg-violet-500/10 hover:text-violet-500"
+                  type="button"
+                  onClick={() => handleMobileNavClick(item.to)}
+                  className={`rounded-2xl px-4 py-3 text-left text-sm font-medium transition-all duration-300 ${
+                    active
+                      ? "bg-violet-500/15 text-[var(--text-primary)]"
+                      : "text-[var(--text-primary)] hover:bg-violet-500/15 hover:text-violet-500"
                   }`}
                 >
                   {item.label}
-                </Link>
+                </button>
               );
             })}
           </div>
