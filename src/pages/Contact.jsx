@@ -28,7 +28,7 @@ export default function Contact() {
             Let's build something meaningful together
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--text-muted)]">
-            I�m open to internships, collaborations, and opportunities where I can contribute through thoughtful frontend work and dependable engineering.
+            I'm open to internships, collaborations, and opportunities where I can contribute through thoughtful frontend work and dependable engineering.
           </p>
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
