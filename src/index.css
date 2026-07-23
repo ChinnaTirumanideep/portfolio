@@ -2,9 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth scrolling for anchor links */
+:root {
+  color-scheme: dark;
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --app-bg: linear-gradient(180deg, #09090b 0%, #16122a 20%, #22163d 45%, #2d1b4e 70%, #16122a 90%, #09090b 100%);
+  --surface: rgba(15, 15, 20, 0.75);
+  --panel-bg: rgba(255, 255, 255, 0.06);
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --border-color: rgba(168, 85, 247, 0.25);
+  --text-primary: #ffffff;
+  --text-muted: #d1d5db;
+  --text-secondary: #a1a1aa;
+  --accent: #7c3aed;
+  --accent-strong: #8b5cf6;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --app-bg: #fafafc;
+  --surface: rgba(255, 255, 255, 0.8);
+  --panel-bg: #ffffff;
+  --card-bg: #ffffff;
+  --border-color: rgba(124, 58, 237, 0.16);
+  --text-primary: #111827;
+  --text-muted: #374151;
+  --text-secondary: #6b7280;
+  --accent: #7c3aed;
+  --accent-strong: #8b5cf6;
+  --shadow: 0 18px 60px rgba(109, 40, 217, 0.12);
+}
+
 html {
   scroll-behavior: smooth;
+  background-color: #050505;
 }
 
 * {
@@ -19,35 +50,116 @@ body,
 
 body {
   margin: 0;
-  font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background:
-    radial-gradient(circle at top, rgba(139, 92, 246, 0.08), transparent 28%),
-    linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-  color: #0f172a;
+  overflow-x: hidden;
+  background: var(--app-bg);
+  color: var(--text-primary);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
-html.dark body {
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
   background:
-    radial-gradient(circle at top, rgba(139, 92, 246, 0.12), transparent 28%),
-    linear-gradient(180deg, #0f172a 0%, #111827 100%);
-  color: #e2e8f0;
+    radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.12), transparent 28%),
+    radial-gradient(circle at 80% 12%, rgba(168, 85, 247, 0.1), transparent 24%),
+    radial-gradient(circle at 50% 70%, rgba(124, 58, 237, 0.08), transparent 34%);
+  filter: blur(70px);
+  z-index: -1;
 }
 
 ::selection {
-  background: rgba(124, 58, 237, 0.2);
-  color: #0f172a;
-}
-
-/* Base body style */
-body {
-  overflow-x: hidden;
+  background: rgba(124, 58, 237, 0.3);
+  color: var(--text-primary);
 }
 
 a {
   text-decoration: none;
+}
+
+.theme-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.theme-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(124, 58, 237, 0.56);
+  box-shadow: 0 24px 80px rgba(109, 40, 217, 0.2);
+}
+
+.theme-button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 14px 34px rgba(124, 58, 237, 0.24);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.theme-button-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 44px rgba(124, 58, 237, 0.3);
+  filter: brightness(1.05);
+}
+
+.theme-button-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-button-outline:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(124, 58, 237, 0.45);
+  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.16);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.2rem;
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-link:hover {
+  transform: translateY(-1px);
 }
 
 @keyframes fade-up {

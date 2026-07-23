@@ -1,13 +1,13 @@
 export default function Footer() {
   return (
-    <footer className="w-full bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 text-center">
-        <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
-          Built by <span className="font-semibold">Chinna</span>
-        </p>
-        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
-          © {new Date().getFullYear()} • All rights reserved.
-        </p>
+    <footer className="mt-8 border-t border-white/10 bg-[var(--surface)]/70 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-8 text-center sm:px-6 md:flex-row md:text-left">
+        <div>
+          <p className="text-sm text-[var(--text-muted)]">
+            Designed &amp; Developed by <span className="font-semibold text-[var(--text-primary)]">Thiru Manideep</span>
+          </p>
+        </div>
+        <p className="text-sm text-[var(--text-muted)]">© {new Date().getFullYear()}</p>
       </div>
     </footer>
   );

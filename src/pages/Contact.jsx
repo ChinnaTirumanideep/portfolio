@@ -1,83 +1,51 @@
+import SectionReveal from "../components/SectionReveal";
+
+const contacts = [
+  {
+    label: "Email",
+    value: "chinnadasari0705@gmail.com",
+    href: "mailto:chinnadasari0705@gmail.com",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/ChinnaTirumanideep",
+    href: "https://github.com/ChinnaTirumanideep",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/chinna-tirumanideep-dasari-24833a291",
+    href: "https://www.linkedin.com/in/chinna-tirumanideep-dasari-24833a291",
+  },
+];
+
 export default function Contact() {
   return (
-    <section
-      id="contact"
-      className="py-12 sm:py-16 px-4 sm:px-6"
-    >
-      <div className="max-w-4xl mx-auto">
-        <div className="rounded-[2rem] border border-slate-200 bg-white/80 p-6 sm:p-8 shadow-lg shadow-slate-900/5 backdrop-blur-xl dark:border-slate-700 dark:bg-slate-900/70">
-          
-          {/* Heading */}
-          <h2
-            className="
-              text-3xl sm:text-4xl
-              font-bold
-              mb-6
-              text-violet-600
-              dark:text-violet-300
-              transition-all
-              duration-300
-              hover:text-violet-700
-              dark:hover:text-violet-200
-              hover:opacity-80
-              hover:scale-[1.02]
-              cursor-default
-            "
-          >
-            Contact
+    <section id="contact" className="px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl">
+        <SectionReveal className="theme-panel rounded-[2rem] p-7 sm:p-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-500">Contact</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
+            Let�s build something meaningful together
           </h2>
-
-          {/* Description */}
-          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-6 max-w-xl leading-7">
-            Feel free to reach out for opportunities, collaborations, or just
-            to connect.
+          <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--text-muted)]">
+            I�m open to internships, collaborations, and opportunities where I can contribute through thoughtful frontend work and dependable engineering.
           </p>
 
-          {/* Contact Details */}
-          <div className="space-y-4 text-sm sm:text-base text-gray-800 dark:text-gray-200">
-            
-            <p>
-              <span className="font-semibold text-violet-600 dark:text-violet-300">
-                Email:
-              </span>{" "}
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {contacts.map((item) => (
               <a
-                href="mailto:chinnadasari0705@gmail.com"
-                className="hover:text-violet-600 transition-colors duration-300"
-              >
-                chinnadasari0705@gmail.com
-              </a>
-            </p>
-
-            <p>
-              <span className="font-semibold text-violet-600 dark:text-violet-300">
-                GitHub:
-              </span>{" "}
-              <a
-                href="https://github.com/ChinnaTirumanideep"
+                key={item.label}
+                href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-violet-600 transition-colors duration-300"
+                className="theme-card rounded-[1.25rem] p-5"
               >
-                github.com/ChinnaTirumanideep
+                <p className="text-sm font-semibold text-violet-500">{item.label}</p>
+                <p className="mt-2 text-sm leading-7 text-[var(--text-muted)]">{item.value}</p>
               </a>
-            </p>
-
-            <p>
-              <span className="font-semibold text-violet-600 dark:text-violet-300">
-                LinkedIn:
-              </span>{" "}
-              <a
-                href="https://www.linkedin.com/in/chinna-tirumanideep-dasari-24833a291"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-violet-600 transition-colors duration-300"
-              >
-                linkedin.com/in/chinna-tirumanideep-dasari-24833a291
-              </a>
-            </p>
-
+            ))}
           </div>
-        </div>
+        </SectionReveal>
       </div>
     </section>
   );
