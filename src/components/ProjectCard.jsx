@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function ProjectCard({ title, desc, tech, features = [], link, demo, index = 0 }) {
+export default function ProjectCard({ title, desc, tech, link, demo, index = 0 }) {
   const techItems = tech.split(",").map((item) => item.trim());
 
   return (
@@ -21,15 +21,6 @@ export default function ProjectCard({ title, desc, tech, features = [], link, de
           <span key={item} className="rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-600 dark:text-violet-100">
             {item}
           </span>
-        ))}
-      </div>
-
-      <div className="mt-4 space-y-2">
-        {features.map((feature) => (
-          <div key={feature} className="flex items-center gap-2 text-sm text-[var(--text-muted)]">
-            <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-            {feature}
-          </div>
         ))}
       </div>
 

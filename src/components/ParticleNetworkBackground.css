@@ -1,0 +1,16 @@
+.particle-network-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+:root {
+  --particle-color: 230, 230, 240;
+}
+
+:root[data-theme="light"] {
+  --particle-color: 45, 45, 55;
+}

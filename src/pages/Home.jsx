@@ -57,9 +57,11 @@ export default function Home() {
             transition={{ duration: 0.7 }}
             className="order-2 lg:order-1"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-violet-500">Hello 👋</p>
-            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl xl:text-7xl">
-              I'm Thiru Manideep
+            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-violet-500">
+              Hello <span className="wave-hand" aria-hidden="true">👋</span>
+            </p>
+            <h1 className="mt-5 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl xl:text-7xl">
+              I'm Tirumanideep
             </h1>
             <p className="mt-4 text-lg font-semibold text-violet-500 sm:text-xl">
               Final Year Information Technology Student
@@ -128,15 +130,12 @@ export default function Home() {
             transition={{ duration: 0.75, delay: 0.1 }}
             className="order-1 flex justify-center lg:order-2"
           >
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-violet-500/20 blur-3xl" />
-              <div className="relative rounded-full border-4 border-violet-400/70 p-3 shadow-[0_0_80px_rgba(124,58,237,0.24)]">
-                <img
-                  src={profileImage}
-                  alt="Thiru Manideep"
-                  className="profile-glow h-[160px] w-[160px] rounded-full object-cover sm:h-[200px] sm:w-[200px] lg:h-[240px] lg:w-[240px] xl:h-[280px] xl:w-[280px]"
-                />
-              </div>
+            <div className="hero-profile-frame">
+              <img
+                src={profileImage}
+                alt="Thiru Manideep"
+                className="hero-profile-image"
+              />
             </div>
           </motion.div>
         </div>

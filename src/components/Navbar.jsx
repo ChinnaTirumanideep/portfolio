@@ -75,7 +75,7 @@ export default function Navbar() {
           className="text-base font-semibold tracking-[0.22em] text-[var(--text-primary)] transition-colors duration-300 hover:text-violet-500 sm:text-lg"
           onClick={() => setOpen(false)}
         >
-          THIRU
+          
         </Link>
 
         <div className="hidden items-center gap-2 md:flex">
